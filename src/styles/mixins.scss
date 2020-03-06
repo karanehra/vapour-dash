@@ -11,3 +11,9 @@
   padding: 20px;
   box-sizing: border-box;
 }
+
+@mixin surface {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}

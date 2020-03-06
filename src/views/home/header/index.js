@@ -3,9 +3,9 @@ import './index.scss'
 
 const Header = () => {
   return (
-    <div className='header'>
+    <header className='header'>
       <div className='content'>Vapour</div>
-    </div>
+    </header>
   )
 }
 

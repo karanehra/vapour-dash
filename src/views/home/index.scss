@@ -1,0 +1,6 @@
+@import '@styles/mixins.scss';
+
+.dataview-wrapper {
+  @include page-width-constraint;
+  height: calc(100vh - 64px);
+}

@@ -1,0 +1,5 @@
+@import '@styles/mixins.scss';
+
+.status-bar-wrapper {
+  @include surface;
+}
