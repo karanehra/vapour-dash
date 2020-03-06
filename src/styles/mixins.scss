@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+@mixin flex-jcsb {
+  justify-content: space-between;
+}
+
 @mixin page-width-constraint {
   max-width: 1440px;
   margin-left: auto;

@@ -2,4 +2,16 @@
 
 .status-bar-wrapper {
   @include surface;
+  @include flex-x-centered;
+  @include flex-jcsb;
+  .metric {
+    .text {
+      font-size: 12px;
+      font-weight: lighter;
+    }
+    .data {
+      font-weight: 18px;
+      font-weight: bold;
+    }
+  }
 }

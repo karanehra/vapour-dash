@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import Header from './header'
-import './index.scss'
-import StatusBar from './statusBar'
 import { callGetVapourStatusApi, callGetVapourShardsApi } from '@utils/api'
+import Header from './header'
+import StatusBar from './statusBar'
+import './index.scss'
 
 const Home = () => {
   const [statusData, setStatusData] = React.useState({
@@ -13,10 +13,10 @@ const Home = () => {
     shardData: {},
     isOnline: false
   })
+  const { shardData } = statusData
 
   const getStatus = async () => {
     let res = await callGetVapourStatusApi()
-    setStatusData({ ...statusData, isOnline: res.status === 200 })
     if (res.status === 200) {
       let shardsResp = await callGetVapourShardsApi()
       let {
@@ -36,20 +36,34 @@ const Home = () => {
           cacheMisses,
           startupMS,
           shardData,
-          keyCount
+          keyCount,
+          isOnline: res.status === 200
         })
       }
+    } else {
+      setStatusData({ ...statusData, isOnline: false })
     }
   }
 
   useEffect(() => {
     getStatus()
   }, [])
+
   return (
     <>
       <Header />
       <div className='dataview-wrapper'>
         <StatusBar data={statusData} />
+        <div className='shard-cells'>
+          {Object.keys(statusData.shardData).map((shardID, i) => (
+            <div
+              className={shardData[shardID] ? 'cell filled' : 'cell'}
+              key={i}
+            >
+              {shardData[shardID] || '0'}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   )

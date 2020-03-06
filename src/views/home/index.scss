@@ -3,4 +3,27 @@
 .dataview-wrapper {
   @include page-width-constraint;
   height: calc(100vh - 64px);
+  .shard-cells {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    .cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 2%;
+      margin: 5px;
+      background-color: lightblue;
+      border-radius: 3px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      &.filled {
+        background-color: #315edc;
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
 }
