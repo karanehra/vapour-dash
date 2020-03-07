@@ -60,7 +60,7 @@ const Home = () => {
               className={shardData[shardID] ? 'cell filled' : 'cell'}
               key={i}
             >
-              {shardData[shardID] || '0'}
+              <div>{shardData[shardID] || '0'}</div>
             </div>
           ))}
         </div>

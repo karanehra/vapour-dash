@@ -4,6 +4,7 @@
   @include surface;
   @include flex-x-centered;
   @include flex-jcsb;
+  padding: 10px 20px;
   .metric {
     .text {
       font-size: 12px;

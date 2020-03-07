@@ -8,9 +8,7 @@
     width: 100%;
     flex-wrap: wrap;
     .cell {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-true-centered;
       height: 50px;
       width: 2%;
       margin: 5px;
