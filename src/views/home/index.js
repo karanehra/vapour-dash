@@ -15,6 +15,8 @@ const Home = () => {
   })
   const { shardData } = statusData
 
+  let liveWS
+
   const getStatus = async () => {
     let res = await callGetVapourStatusApi()
     if (res.status === 200) {
@@ -49,11 +51,30 @@ const Home = () => {
     getStatus()
   }, [])
 
+  const goLive = () => {
+    liveWS = new WebSocket('ws://localhost:9000')
+    liveWS.onopen = onConnectedHandler
+    liveWS.onerror = onErrorHandler
+    liveWS.onmessage = onMessageReceiveHandler
+  }
+
+  const onConnectedHandler = () => {
+    console.log('connected to ws')
+    liveWS.send('data')
+  }
+  const onErrorHandler = err => {
+    console.log(err)
+  }
+  const onMessageReceiveHandler = event => {
+    console.log(event)
+  }
+
   return (
     <>
       <Header />
       <div className='dataview-wrapper'>
         <StatusBar data={statusData} />
+        <button onClick={goLive}>Hello</button>
         <div className='shard-cells'>
           {Object.keys(statusData.shardData).map((shardID, i) => (
             <div
