@@ -11,5 +11,10 @@
     @include flex-jcsb;
     width: 100%;
     height: inherit;
+    > .brand {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 }

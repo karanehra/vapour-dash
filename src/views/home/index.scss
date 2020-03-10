@@ -1,6 +1,10 @@
 @import '@styles/colors.scss';
 @import '@styles/mixins.scss';
 
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 .dataview-wrapper {
   @include page-width-constraint;
   height: calc(100vh - 64px);
