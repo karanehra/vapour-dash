@@ -13,11 +13,14 @@ const Home = () => {
     shardData: {},
     isOnline: false
   })
+  const [loading, setLoading] = React.useState(false)
+  const [liveStatus, setLiveStatus] = React.useState(false)
   const { shardData } = statusData
 
   let liveWS
 
   const getStatus = async () => {
+    setLoading(true)
     let res = await callGetVapourStatusApi()
     if (res.status === 200) {
       let shardsResp = await callGetVapourShardsApi()
@@ -45,6 +48,7 @@ const Home = () => {
     } else {
       setStatusData({ ...statusData, isOnline: false })
     }
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -71,21 +75,24 @@ const Home = () => {
 
   return (
     <>
-      <Header />
-      <div className='dataview-wrapper'>
-        <StatusBar data={statusData} />
-        <button onClick={goLive}>Hello</button>
-        <div className='shard-cells'>
-          {Object.keys(statusData.shardData).map((shardID, i) => (
-            <div
-              className={shardData[shardID] ? 'cell filled' : 'cell'}
-              key={i}
-            >
-              <div>{shardData[shardID] || '0'}</div>
-            </div>
-          ))}
+      <Header onRefresh={getStatus} onGoLive={goLive} />
+      {loading ? (
+        <div>Loadng</div>
+      ) : (
+        <div className='dataview-wrapper'>
+          <StatusBar data={statusData} />
+          <div className='shard-cells'>
+            {Object.keys(statusData.shardData).map((shardID, i) => (
+              <div
+                className={shardData[shardID] ? 'cell filled' : 'cell'}
+                key={i}
+              >
+                <div>{shardData[shardID] || '0'}</div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

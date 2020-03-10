@@ -2,12 +2,14 @@
 @import '@styles/mixins.scss';
 
 .header {
-  @include flex-x-centered;
   width: 100%;
   height: 64px;
-  background-color: $colorPrimary;
+  background-color: $themePrimary;
   > .content {
     @include page-width-constraint;
+    @include flex-x-centered;
+    @include flex-jcsb;
     width: 100%;
+    height: inherit;
   }
 }

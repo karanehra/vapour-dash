@@ -1,3 +1,4 @@
+@import '@styles/colors.scss';
 @import '@styles/mixins.scss';
 
 .dataview-wrapper {
@@ -18,7 +19,7 @@
       text-orientation: mixed;
       transform: rotate(180deg);
       &.filled {
-        background-color: #315edc;
+        background-color: $themePrimary;
         color: white;
         font-weight: bold;
       }
@@ -31,6 +32,6 @@
     background-color: green;
   }
   100% {
-    background-color: #315edc;
+    background-color: $themePrimary;
   }
 }
